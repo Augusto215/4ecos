@@ -135,6 +135,11 @@
       height: 100px;
   }
 
+  .mobile-order
+  {
+    order:2 !important;
+  }
+
   .navbar .navbar-nav .nav-link  {
       margin-right: 0;
       padding: 10px 0;
