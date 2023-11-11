@@ -90,6 +90,12 @@
   font-weight: normal;
 }
 
+.owl-carousel .owl-item
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 /*** Navbar ***/
 .sticky-top {
@@ -269,11 +275,22 @@
   left: calc(50% - 13px);
 }
 
+.owl-stage
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 /*** Products ***/
 .product {
   background: linear-gradient(rgba(136, 180, 78, .1), rgba(136, 180, 78, .1)), url(../img/product-bg.png) left bottom no-repeat;
   background-size: auto;
+}
+.product1 {
+  background: #fff;
+  background-size: auto;
+  object-fit: cover;
 }
 
 .product-carousel .owl-nav {
