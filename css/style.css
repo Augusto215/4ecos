@@ -209,10 +209,7 @@
       min-height: 450px;
   }
 
-  .img-mobile
-  {
-    max-width: 10rem !important;
-  }
+
   
   #header-carousel .carousel-item img {
       position: absolute;
@@ -243,6 +240,27 @@
   position: relative;
   margin-bottom: 3rem;
   padding-bottom: 2rem;
+}
+
+.geologia-title::before
+{
+  position: absolute;
+  content: "";
+  width: 50%;
+  height: 2px;
+  background: var(--primary);
+}
+
+.geologia-title::after {
+  position: absolute;
+  content: "";
+  width: 28px;
+  height: 28px;
+  bottom: -13px;
+  left: calc(25% - 13px);
+  background: var(--dark);
+  border: 10px solid #FFFFFF;
+  border-radius: 28px;
 }
 
 .section-title::before {
