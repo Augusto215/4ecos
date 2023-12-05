@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+    <link rel="icon" href="img/15.png" sizes="64x64" type="image/x-icon">
 
 <head>
     <meta charset="utf-8">
@@ -79,11 +80,11 @@
     <!-- Page Header Start -->
     <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container text-center py-5">
-            <h1 class="display-2 text-dark mb-4 animated slideInDown">Contacte-nos</h1>
+            <h1 class="display-2 text-light mb-4 animated slideInDown">Contacte-nos</h1>
             <nav aria-label="breadcrumb animated slideInDown">
                 <ol class="breadcrumb justify-content-center mb-0">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item text-dark" aria-current="page">Contato</li>
+                    <li class="breadcrumb-item text-light" aria-current="page">Contato</li>
                 </ol>
             </nav>
         </div>
@@ -129,37 +130,95 @@
                 <div class="col-lg-12 wow fadeInUp" data-wow-delay="0.1s">
                     <h3 class="mb-4">Fale agora!</h3>
                     <p class="d-none mb-4">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a href="https://htmlcodex.com/contact-form">Download Now</a>.</p>
-                    <form>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                    <label for="name">Nome Completo</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="Your Email">
-                                    <label for="email">Seu Email</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                    <label for="subject">Assunto</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 120px"></textarea>
-                                    <label for="message">Mensagem</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn btn-primary rounded-pill py-3 px-5" type="submit">Enviar</button>
-                            </div>
-                        </div>
-                    </form>
+                    <!-- Formulário com campos específicos -->
+<form id="my-custom-form" action="https://formspree.io/f/xgejgewq" method="POST">
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="form-floating">
+          <input type="text" class="form-control" name="name" id="name" placeholder="Your Name">
+          <label for="name">Nome Completo</label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-floating">
+          <input type="email" class="form-control" name="email" id="email" placeholder="Your Email">
+          <label for="email">Seu Email</label>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="form-floating">
+          <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject">
+          <label for="subject">Assunto</label>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="form-floating">
+          <textarea class="form-control" name="message" placeholder="Leave a message here" id="message" style="height: 120px"></textarea>
+          <label for="message">Mensagem</label>
+        </div>
+      </div>
+      <div class="col-12">
+        <button class="btn btn-primary rounded-pill py-3 px-5" type="submit">Enviar</button>
+      </div>
+    </div>
+    <p style="font-size: 1.5rem !important;" id="my-custom-form-status"></p>
+  </form>
+  <style>
+    .success-message {
+  background-color: #88b44e;
+  color: white;
+  width: fit-content;
+  border-radius: 4px;
+  padding: 10px;
+  margin-top: 1.5rem
+}
+
+.error-message {
+  background-color: #d13d3d;
+  color: white;
+  width: fit-content;
+  border-radius: 4px;
+  padding: 10px;
+  margin-top: 1.5rem
+}
+  </style>
+  
+  <!-- Script para lidar com a submissão do formulário -->
+  <script>
+   var customForm = document.getElementById("my-custom-form");
+
+async function handleCustomSubmit(event) {
+  event.preventDefault();
+  var customStatus = document.getElementById("my-custom-form-status");
+  var data = new FormData(event.target);
+  fetch(event.target.action, {
+    method: customForm.method,
+    body: data,
+    headers: {
+        'Accept': 'application/json'
+    }
+  }).then(response => {
+    if (response.ok) {
+      customStatus.innerHTML = "Enviado com sucesso.";
+      customStatus.className = 'success-message'; // Adiciona classe para sucesso
+      customForm.reset();
+    } else {
+      response.json().then(data => {
+        if (Object.hasOwn(data, 'errors')) {
+          customStatus.innerHTML = data["errors"].map(error => error["message"]).join(", ");
+        } else {
+          customStatus.innerHTML = "Oops! Houve um erro no envio do formulário.";
+        }
+        customStatus.className = 'error-message'; // Adiciona classe para erro
+      });
+    }
+  }).catch(error => {
+    customStatus.innerHTML = "Oops! Houve um erro no envio do formulário.";
+    customStatus.className = 'error-message'; // Adiciona classe para erro
+  });
+}
+customForm.addEventListener("submit", handleCustomSubmit);
+  </script>
                 </div>
                 <div class=" d-none col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="h-100">
